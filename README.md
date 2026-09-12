@@ -4,4 +4,4 @@
 
 Voy a ir a comprar un pollo asado.
 
-Y no le voy a dar a Llaya, porque me cae mal.
+Y le voy a dar a Llaya porque me cae súper bien.
