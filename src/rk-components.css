@@ -1,0 +1,190 @@
+/* ============================================================
+   RK COMPONENTS — estilos compartidos por los 10 componentes
+   ------------------------------------------------------------
+   Estas son las reglas .rk-* que antes vivían duplicadas en cada
+   par de archivos HTML (hermana A / hermana B). Aquí solo existen
+   una vez: la variante ahora se resuelve con props, no con un
+   archivo distinto.
+   Importa tokens.css para heredar color, tipografía, espaciado
+   y radios centralizados del proyecto RECK.
+   ============================================================ */
+@import '../tokens.css';
+
+/* ---------- Titulo ---------- */
+.rk-title{
+  --rk-title-eyebrow-size: 12px;
+  --rk-title-size: 52px;
+  --rk-title-gap: var(--rk-space-3);
+  display:flex;flex-direction:column;gap:var(--rk-title-gap);
+  text-align:left;max-width:640px;font-family:var(--rk-sans);
+}
+.rk-title__eyebrow{
+  align-self:flex-start;font-family:var(--rk-mono);
+  font-size:var(--rk-title-eyebrow-size);letter-spacing:.08em;
+  text-transform:uppercase;color:var(--accent);background:var(--accent-bg);
+  border:1px solid var(--accent-border);border-radius:var(--rk-radius-pill);
+  padding:4px 12px;
+}
+.rk-title__text{
+  margin:0;font-weight:500;font-size:var(--rk-title-size);
+  line-height:1.1;letter-spacing:-0.02em;color:var(--text-h);
+}
+
+/* ---------- Boton ---------- */
+.rk-btn{
+  --rk-btn-pad-y: 12px;
+  --rk-btn-pad-x: 22px;
+  --rk-btn-font-size: 16px;
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--rk-sans);
+  font-size:var(--rk-btn-font-size);font-weight:500;color:#fff;
+  background:var(--accent);border:2px solid transparent;
+  border-radius:var(--rk-radius-pill);
+  padding:var(--rk-btn-pad-y) var(--rk-btn-pad-x);
+  cursor:pointer;transition:border-color .2s, transform .15s;
+}
+.rk-btn:hover{border-color:var(--accent-border);}
+.rk-btn:active{transform:scale(.97);}
+.rk-btn__icon{display:inline-flex;width:16px;height:16px;}
+
+/* ---------- Parrafo ---------- */
+.rk-paragraph{
+  --rk-paragraph-width: 560px;
+  --rk-paragraph-size: 16px;
+  max-width:var(--rk-paragraph-width);text-align:left;font-family:var(--rk-sans);
+}
+.rk-paragraph__label{
+  display:block;font-family:var(--rk-mono);font-size:12px;color:var(--accent);
+  margin-bottom:var(--rk-space-2);
+}
+.rk-paragraph__text{
+  margin:0;font-size:var(--rk-paragraph-size);line-height:1.6;color:var(--text);
+}
+
+/* ---------- Imagen ---------- */
+.rk-image{
+  --rk-image-width: 360px;
+  --rk-image-aspect: 16/9;
+  --rk-image-radius: var(--rk-radius-md);
+  margin:0;width:var(--rk-image-width);max-width:100%;text-align:left;
+  font-family:var(--rk-sans);
+}
+.rk-image__frame{
+  aspect-ratio:var(--rk-image-aspect);border-radius:var(--rk-image-radius);
+  border:1px solid var(--border);background:var(--code-bg);
+  overflow:hidden;display:flex;align-items:center;justify-content:center;
+}
+.rk-image__frame img{width:100%;height:100%;object-fit:cover;display:block;}
+.rk-image__placeholder{font-family:var(--rk-mono);font-size:12px;color:var(--text);}
+.rk-image__caption{margin-top:var(--rk-space-2);font-size:13px;color:var(--text);}
+
+/* ---------- Carrusel ---------- */
+.rk-slider{
+  --rk-slider-card-w: 200px;
+  --rk-slider-gap: var(--rk-space-4);
+  width:min(640px,90vw);text-align:left;font-family:var(--rk-sans);
+}
+.rk-slider__track{
+  display:flex;gap:var(--rk-slider-gap);overflow-x:auto;
+  scroll-snap-type:x mandatory;padding-bottom:var(--rk-space-2);
+}
+.rk-slider__track::-webkit-scrollbar{height:6px;}
+.rk-slider__track::-webkit-scrollbar-thumb{background:var(--border);border-radius:var(--rk-radius-pill);}
+.rk-slider__card{
+  flex:0 0 var(--rk-slider-card-w);scroll-snap-align:start;
+  border:1px solid var(--border);border-radius:var(--rk-radius-md);
+  padding:var(--rk-space-4);background:var(--bg);
+}
+.rk-slider__card h3{margin:0 0 4px;font-size:15px;color:var(--text-h);}
+.rk-slider__card p{margin:0;font-size:13px;color:var(--text);}
+.rk-slider__nav{display:flex;gap:6px;margin-top:var(--rk-space-3);justify-content:center;}
+.rk-slider__dot{width:8px;height:8px;border-radius:50%;background:var(--border);border:none;padding:0;cursor:pointer;}
+.rk-slider__dot.is-active{background:var(--accent);}
+
+/* ---------- Grafica ---------- */
+.rk-chart{
+  --rk-chart-height: 160px;
+  --rk-chart-bar-w: 28px;
+  width:min(420px,90vw);text-align:left;font-family:var(--rk-sans);
+}
+.rk-chart__title{margin:0 0 var(--rk-space-4);font-size:14px;color:var(--text-h);font-weight:500;}
+.rk-chart__bars{
+  list-style:none;margin:0;padding:0;display:flex;align-items:flex-end;
+  gap:var(--rk-space-3);height:var(--rk-chart-height);border-bottom:1px solid var(--border);
+}
+.rk-chart__bar{
+  width:var(--rk-chart-bar-w);height:calc(var(--value) * 1%);
+  background:var(--accent-bg);border:1px solid var(--accent-border);
+  border-radius:6px 6px 0 0;position:relative;
+}
+.rk-chart__value{
+  position:absolute;top:-20px;left:50%;transform:translateX(-50%);
+  font-family:var(--rk-mono);font-size:11px;color:var(--text);white-space:nowrap;
+}
+.rk-chart__labels{display:flex;gap:var(--rk-space-3);margin-top:var(--rk-space-2);}
+.rk-chart__label{width:var(--rk-chart-bar-w);font-size:11px;text-align:center;color:var(--text);}
+
+/* ---------- ListaFiltro ---------- */
+.rk-list-filter{width:min(420px,90vw);text-align:left;font-family:var(--rk-sans);}
+.rk-list-filter__filters{display:flex;flex-wrap:wrap;gap:var(--rk-space-2);margin-bottom:var(--rk-space-4);}
+.rk-chip{
+  font-size:13px;color:var(--text);background:var(--code-bg);border:1px solid var(--border);
+  border-radius:var(--rk-radius-pill);padding:6px 14px;cursor:pointer;
+}
+.rk-chip.is-active{color:var(--accent);background:var(--accent-bg);border-color:var(--accent-border);}
+.rk-list-filter__items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--rk-space-2);}
+.rk-list-filter__item{
+  display:flex;justify-content:space-between;gap:var(--rk-space-3);
+  padding:var(--rk-space-3);border:1px solid var(--border);border-radius:var(--rk-radius-sm);
+  font-size:14px;color:var(--text-h);
+}
+.rk-list-filter__tag{font-family:var(--rk-mono);font-size:11px;color:var(--accent);}
+
+/* ---------- ListaSimple ---------- */
+.rk-list{
+  list-style:none;margin:0;padding:0;width:min(360px,90vw);text-align:left;
+  border-top:1px solid var(--border);font-family:var(--rk-sans);
+}
+.rk-list__item{
+  display:flex;align-items:center;gap:var(--rk-space-3);
+  padding:var(--rk-space-3) 0;border-bottom:1px solid var(--border);
+}
+.rk-list__marker{flex:0 0 8px;width:8px;height:8px;border-radius:50%;background:var(--accent);}
+.rk-list__label{font-size:14px;color:var(--text-h);}
+.rk-list__meta{margin-left:auto;font-family:var(--rk-mono);font-size:12px;color:var(--text);}
+
+/* ---------- Documento ---------- */
+.rk-doc{
+  display:flex;align-items:center;gap:var(--rk-space-3);width:min(360px,90vw);
+  padding:var(--rk-space-4);border:1px solid var(--border);border-radius:var(--rk-radius-md);
+  background:var(--bg);text-align:left;font-family:var(--rk-sans);
+}
+.rk-doc__icon{
+  flex:0 0 40px;width:40px;height:40px;border-radius:var(--rk-radius-sm);
+  background:var(--accent-bg);border:1px solid var(--accent-border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--rk-mono);font-size:11px;color:var(--accent);
+}
+.rk-doc__meta{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0;}
+.rk-doc__name{font-size:14px;color:var(--text-h);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.rk-doc__info{font-size:12px;color:var(--text);}
+.rk-doc__action{
+  font-size:13px;color:var(--accent);text-decoration:none;
+  border:1px solid var(--accent-border);border-radius:var(--rk-radius-pill);
+  padding:6px 12px;white-space:nowrap;
+}
+.rk-doc__action:hover{background:var(--accent-bg);}
+
+/* ---------- BarraProgreso ---------- */
+.rk-progress{width:min(320px,90vw);text-align:left;font-family:var(--rk-sans);}
+.rk-progress__top{display:flex;justify-content:space-between;margin-bottom:var(--rk-space-2);}
+.rk-progress__label{font-size:13px;color:var(--text-h);}
+.rk-progress__percent{font-family:var(--rk-mono);font-size:12px;color:var(--accent);}
+.rk-progress__track{
+  --rk-progress-height: 10px;
+  height:var(--rk-progress-height);border-radius:var(--rk-radius-pill);
+  background:var(--code-bg);border:1px solid var(--border);overflow:hidden;
+}
+.rk-progress__fill{
+  height:100%;width:0%;border-radius:inherit;background:var(--accent);
+  transition:width 1s ease;
+}
