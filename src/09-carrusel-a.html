@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrusel A · RECK</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+/* ================= FICHA DEL ELEMENTO =================
+   Categoria : Contenedores con deslizables
+   Hermana   : A
+   -- Los 4 rasgos FIJOS (no cambian entre hermanas) --
+   1) Color      : tarjetas con borde var(--border), punto activo en var(--accent)
+   2) Forma      : franja horizontal desplazable (scroll-snap) + puntos de navegacion debajo
+   3) Proposito  : permitir recorrer varias tarjetas de contenido en un espacio compacto
+   4) Estructura : section.rk-slider > div.rk-slider__track(cards) + div.rk-slider__nav(dots)
+   -- Lo AJUSTABLE entre hermanas --
+   - Proporciones: variables --rk-* definidas en la regla
+     raiz del componente (abajo). Cambialas para crear
+     una nueva variante sin tocar el resto del CSS.
+   - Contenido: todo lo marcado data-slot="..." es 100%
+     intercambiable siempre que respete el proposito.
+   ========================================================= */
+
+.rk-slider{
+  --rk-slider-card-w: 200px;
+  --rk-slider-gap: var(--rk-space-4);
+  width:min(640px,90vw);text-align:left;font-family:var(--rk-sans);
+}
+.rk-slider__track{
+  display:flex;gap:var(--rk-slider-gap);overflow-x:auto;
+  scroll-snap-type:x mandatory;padding-bottom:var(--rk-space-2);
+}
+.rk-slider__track::-webkit-scrollbar{height:6px;}
+.rk-slider__track::-webkit-scrollbar-thumb{background:var(--border);border-radius:var(--rk-radius-pill);}
+.rk-slider__card{
+  flex:0 0 var(--rk-slider-card-w);scroll-snap-align:start;
+  border:1px solid var(--border);border-radius:var(--rk-radius-md);
+  padding:var(--rk-space-4);background:var(--bg);
+}
+.rk-slider__card h3{margin:0 0 4px;font-size:15px;color:var(--text-h);}
+.rk-slider__card p{margin:0;font-size:13px;color:var(--text);}
+.rk-slider__nav{display:flex;gap:6px;margin-top:var(--rk-space-3);justify-content:center;}
+.rk-slider__dot{width:8px;height:8px;border-radius:50%;background:var(--border);border:none;padding:0;cursor:pointer;}
+.rk-slider__dot.is-active{background:var(--accent);}
+</style>
+</head>
+<body class="rk-preview">
+<span class="rk-preview__tag">Contenedores con deslizables &middot; hermana A</span>
+<!-- COMPONENT START -->
+<section class="rk-slider">
+  <div class="rk-slider__track" data-slot="items">
+    <article class="rk-slider__card"><h3>Corrida 1</h3><p>3 funcionarios, sin lluvia</p></article>
+    <article class="rk-slider__card"><h3>Corrida 2</h3><p>3 funcionarios, con lluvia</p></article>
+    <article class="rk-slider__card"><h3>Corrida 3</h3><p>5 funcionarios, sin lluvia</p></article>
+    <article class="rk-slider__card"><h3>Corrida 4</h3><p>5 funcionarios, con lluvia</p></article>
+  </div>
+  <div class="rk-slider__nav" data-slot="controls">
+    <button class="rk-slider__dot is-active"></button>
+    <button class="rk-slider__dot"></button>
+    <button class="rk-slider__dot"></button>
+    <button class="rk-slider__dot"></button>
+  </div>
+</section>
+<!-- COMPONENT END -->
+<script>
+(function(){
+  document.querySelectorAll('.rk-slider').forEach(function(slider){
+    var track = slider.querySelector('.rk-slider__track');
+    var dots = slider.querySelectorAll('.rk-slider__dot');
+    var cards = slider.querySelectorAll('.rk-slider__card');
+    dots.forEach(function(dot, i){
+      dot.addEventListener('click', function(){
+        cards[i].scrollIntoView({behavior:'smooth', inline:'start', block:'nearest'});
+      });
+    });
+    track.addEventListener('scroll', function(){
+      var i = Math.round(track.scrollLeft / cards[0].getBoundingClientRect().width);
+      dots.forEach(function(d, idx){ d.classList.toggle('is-active', idx === i); });
+    });
+  });
+})();
+</script>
+</body>
+</html>

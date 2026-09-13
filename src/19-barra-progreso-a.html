@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barra de progreso A · RECK</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+/* ================= FICHA DEL ELEMENTO =================
+   Categoria : Barras de progreso
+   Hermana   : A
+   -- Los 4 rasgos FIJOS (no cambian entre hermanas) --
+   1) Color      : relleno en var(--accent), fondo del track en var(--code-bg)
+   2) Forma      : pastilla horizontal delgada con relleno que crece de izquierda a derecha
+   3) Proposito  : representar el avance de una metrica hacia una meta
+   4) Estructura : div.rk-progress[data-value] > div.rk-progress__top + div.rk-progress__track > div.rk-progress__fill
+   -- Lo AJUSTABLE entre hermanas --
+   - Proporciones: variables --rk-* definidas en la regla
+     raiz del componente (abajo). Cambialas para crear
+     una nueva variante sin tocar el resto del CSS.
+   - Contenido: todo lo marcado data-slot="..." es 100%
+     intercambiable siempre que respete el proposito.
+   ========================================================= */
+
+.rk-progress{width:min(320px,90vw);text-align:left;font-family:var(--rk-sans);}
+.rk-progress__top{display:flex;justify-content:space-between;margin-bottom:var(--rk-space-2);}
+.rk-progress__label{font-size:13px;color:var(--text-h);}
+.rk-progress__percent{font-family:var(--rk-mono);font-size:12px;color:var(--accent);}
+.rk-progress__track{
+  --rk-progress-height: 10px;
+  height:var(--rk-progress-height);border-radius:var(--rk-radius-pill);
+  background:var(--code-bg);border:1px solid var(--border);overflow:hidden;
+}
+.rk-progress__fill{
+  height:100%;width:0%;border-radius:inherit;background:var(--accent);
+  transition:width 1s ease;
+}
+</style>
+</head>
+<body class="rk-preview">
+<span class="rk-preview__tag">Barras de progreso &middot; hermana A</span>
+<!-- COMPONENT START -->
+<div class="rk-progress" data-value="72">
+  <div class="rk-progress__top">
+    <span class="rk-progress__label" data-slot="label">Votantes atendidos</span>
+    <span class="rk-progress__percent" data-slot="percent">72%</span>
+  </div>
+  <div class="rk-progress__track"><div class="rk-progress__fill"></div></div>
+</div>
+<!-- COMPONENT END -->
+<script>
+(function(){
+  document.querySelectorAll('.rk-progress').forEach(function(bar){
+    var fill = bar.querySelector('.rk-progress__fill');
+    var value = bar.dataset.value || '0';
+    requestAnimationFrame(function(){
+      setTimeout(function(){ fill.style.width = value + '%'; }, 50);
+    });
+  });
+})();
+</script>
+</body>
+</html>

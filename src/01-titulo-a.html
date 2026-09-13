@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Titulo A · RECK</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+/* ================= FICHA DEL ELEMENTO =================
+   Categoria : Titulos
+   Hermana   : A
+   -- Los 4 rasgos FIJOS (no cambian entre hermanas) --
+   1) Color      : texto en var(--text-h), etiqueta superior en var(--accent)/var(--accent-bg)
+   2) Forma      : etiqueta tipo pildora + texto de encabezado debajo, alineado a la izquierda
+   3) Proposito  : presentar el titulo principal de una pagina o vista
+   4) Estructura : header.rk-title > span.rk-title__eyebrow + h1.rk-title__text
+   -- Lo AJUSTABLE entre hermanas --
+   - Proporciones: variables --rk-* definidas en la regla
+     raiz del componente (abajo). Cambialas para crear
+     una nueva variante sin tocar el resto del CSS.
+   - Contenido: todo lo marcado data-slot="..." es 100%
+     intercambiable siempre que respete el proposito.
+   ========================================================= */
+
+.rk-title{
+  --rk-title-eyebrow-size: 12px;
+  --rk-title-size: 52px;
+  --rk-title-gap: var(--rk-space-3);
+  display:flex;flex-direction:column;gap:var(--rk-title-gap);
+  text-align:left;max-width:640px;font-family:var(--rk-sans);
+}
+.rk-title__eyebrow{
+  align-self:flex-start;font-family:var(--rk-mono);
+  font-size:var(--rk-title-eyebrow-size);letter-spacing:.08em;
+  text-transform:uppercase;color:var(--accent);background:var(--accent-bg);
+  border:1px solid var(--accent-border);border-radius:var(--rk-radius-pill);
+  padding:4px 12px;
+}
+.rk-title__text{
+  margin:0;font-weight:500;font-size:var(--rk-title-size);
+  line-height:1.1;letter-spacing:-0.02em;color:var(--text-h);
+}
+</style>
+</head>
+<body class="rk-preview">
+<span class="rk-preview__tag">Titulos &middot; hermana A</span>
+<!-- COMPONENT START -->
+<header class="rk-title" style="--rk-title-size:52px">
+  <span class="rk-title__eyebrow" data-slot="eyebrow">Proyecto RECK</span>
+  <h1 class="rk-title__text" data-slot="heading">Simulacion de la casilla</h1>
+</header>
+<!-- COMPONENT END -->
+
+</body>
+</html>

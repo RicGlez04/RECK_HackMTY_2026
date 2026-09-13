@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documento A · RECK</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+/* ================= FICHA DEL ELEMENTO =================
+   Categoria : Espacios para documentos
+   Hermana   : A
+   -- Los 4 rasgos FIJOS (no cambian entre hermanas) --
+   1) Color      : icono en var(--accent-bg)/var(--accent-border), accion en var(--accent)
+   2) Forma      : tarjeta horizontal: icono + nombre/metadatos + accion a la derecha
+   3) Proposito  : representar un archivo adjunto o descargable con su metadata
+   4) Estructura : div.rk-doc > div.rk-doc__icon + div.rk-doc__meta(nombre+info) + a.rk-doc__action
+   -- Lo AJUSTABLE entre hermanas --
+   - Proporciones: variables --rk-* definidas en la regla
+     raiz del componente (abajo). Cambialas para crear
+     una nueva variante sin tocar el resto del CSS.
+   - Contenido: todo lo marcado data-slot="..." es 100%
+     intercambiable siempre que respete el proposito.
+   ========================================================= */
+
+.rk-doc{
+  display:flex;align-items:center;gap:var(--rk-space-3);width:min(360px,90vw);
+  padding:var(--rk-space-4);border:1px solid var(--border);border-radius:var(--rk-radius-md);
+  background:var(--bg);text-align:left;font-family:var(--rk-sans);
+}
+.rk-doc__icon{
+  flex:0 0 40px;width:40px;height:40px;border-radius:var(--rk-radius-sm);
+  background:var(--accent-bg);border:1px solid var(--accent-border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--rk-mono);font-size:11px;color:var(--accent);
+}
+.rk-doc__meta{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0;}
+.rk-doc__name{font-size:14px;color:var(--text-h);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.rk-doc__info{font-size:12px;color:var(--text);}
+.rk-doc__action{
+  font-size:13px;color:var(--accent);text-decoration:none;
+  border:1px solid var(--accent-border);border-radius:var(--rk-radius-pill);
+  padding:6px 12px;white-space:nowrap;
+}
+.rk-doc__action:hover{background:var(--accent-bg);}
+</style>
+</head>
+<body class="rk-preview">
+<span class="rk-preview__tag">Espacios para documentos &middot; hermana A</span>
+<!-- COMPONENT START -->
+<div class="rk-doc">
+  <div class="rk-doc__icon" data-slot="icon">PDF</div>
+  <div class="rk-doc__meta">
+    <span class="rk-doc__name" data-slot="name">reporte_simulacion.pdf</span>
+    <span class="rk-doc__info" data-slot="info">1.2 MB &middot; hoy</span>
+  </div>
+  <a class="rk-doc__action" data-slot="action" href="#">Descargar</a>
+</div>
+<!-- COMPONENT END -->
+
+</body>
+</html>

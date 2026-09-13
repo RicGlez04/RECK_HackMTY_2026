@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boton B · RECK</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+/* ================= FICHA DEL ELEMENTO =================
+   Categoria : Botones
+   Hermana   : B
+   -- Los 4 rasgos FIJOS (no cambian entre hermanas) --
+   1) Color      : fondo var(--accent), texto blanco, borde de foco var(--accent-border)
+   2) Forma      : pastilla (border-radius total) con icono opcional + etiqueta de texto
+   3) Proposito  : disparar la accion principal de una vista (call to action)
+   4) Estructura : button.rk-btn > span.rk-btn__icon + span.rk-btn__label
+   -- Lo AJUSTABLE entre hermanas --
+   - Proporciones: variables --rk-* definidas en la regla
+     raiz del componente (abajo). Cambialas para crear
+     una nueva variante sin tocar el resto del CSS.
+   - Contenido: todo lo marcado data-slot="..." es 100%
+     intercambiable siempre que respete el proposito.
+   ========================================================= */
+
+.rk-btn{
+  --rk-btn-pad-y: 12px;
+  --rk-btn-pad-x: 22px;
+  --rk-btn-font-size: 16px;
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--rk-sans);
+  font-size:var(--rk-btn-font-size);font-weight:500;color:#fff;
+  background:var(--accent);border:2px solid transparent;
+  border-radius:var(--rk-radius-pill);
+  padding:var(--rk-btn-pad-y) var(--rk-btn-pad-x);
+  cursor:pointer;transition:border-color .2s, transform .15s;
+}
+.rk-btn:hover{border-color:var(--accent-border);}
+.rk-btn:active{transform:scale(.97);}
+.rk-btn__icon{display:inline-flex;width:16px;height:16px;}
+</style>
+</head>
+<body class="rk-preview">
+<span class="rk-preview__tag">Botones &middot; hermana B</span>
+<!-- COMPONENT START -->
+<button type="button" class="rk-btn" style="--rk-btn-pad-y:8px;--rk-btn-pad-x:16px;--rk-btn-font-size:14px">
+  <span class="rk-btn__icon" data-slot="icon"></span>
+  <span class="rk-btn__label" data-slot="label">Descargar reporte</span>
+</button>
+<!-- COMPONENT END -->
+
+</body>
+</html>

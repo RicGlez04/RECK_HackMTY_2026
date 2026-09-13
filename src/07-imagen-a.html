@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imagen A · RECK</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+/* ================= FICHA DEL ELEMENTO =================
+   Categoria : Espacios para imagenes
+   Hermana   : A
+   -- Los 4 rasgos FIJOS (no cambian entre hermanas) --
+   1) Color      : marco en var(--code-bg) con borde var(--border)
+   2) Forma      : recuadro con relacion de aspecto fija + descripcion debajo
+   3) Proposito  : reservar espacio para una imagen (foto, captura, diagrama)
+   4) Estructura : figure.rk-image > div.rk-image__frame[+img opcional] + figcaption.rk-image__caption
+   -- Lo AJUSTABLE entre hermanas --
+   - Proporciones: variables --rk-* definidas en la regla
+     raiz del componente (abajo). Cambialas para crear
+     una nueva variante sin tocar el resto del CSS.
+   - Contenido: todo lo marcado data-slot="..." es 100%
+     intercambiable siempre que respete el proposito.
+   ========================================================= */
+
+.rk-image{
+  --rk-image-width: 360px;
+  --rk-image-aspect: 16/9;
+  --rk-image-radius: var(--rk-radius-md);
+  margin:0;width:var(--rk-image-width);max-width:100%;text-align:left;
+  font-family:var(--rk-sans);
+}
+.rk-image__frame{
+  aspect-ratio:var(--rk-image-aspect);border-radius:var(--rk-image-radius);
+  border:1px solid var(--border);background:var(--code-bg);
+  overflow:hidden;display:flex;align-items:center;justify-content:center;
+}
+.rk-image__frame img{width:100%;height:100%;object-fit:cover;display:block;}
+.rk-image__placeholder{font-family:var(--rk-mono);font-size:12px;color:var(--text);}
+.rk-image__caption{margin-top:var(--rk-space-2);font-size:13px;color:var(--text);}
+</style>
+</head>
+<body class="rk-preview">
+<span class="rk-preview__tag">Espacios para imagenes &middot; hermana A</span>
+<!-- COMPONENT START -->
+<figure class="rk-image">
+  <div class="rk-image__frame" data-slot="image">
+    <!-- Reemplaza este placeholder por <img src="..." alt="..."> -->
+    <span class="rk-image__placeholder">imagen 1200x675</span>
+  </div>
+  <figcaption class="rk-image__caption" data-slot="caption">Mapa de la casilla simulada</figcaption>
+</figure>
+<!-- COMPONENT END -->
+
+</body>
+</html>

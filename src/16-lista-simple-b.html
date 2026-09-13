@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista simple B · RECK</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+/* ================= FICHA DEL ELEMENTO =================
+   Categoria : Listas sin filtros
+   Hermana   : B
+   -- Los 4 rasgos FIJOS (no cambian entre hermanas) --
+   1) Color      : marcador circular en var(--accent), separadores en var(--border)
+   2) Forma      : lista vertical de filas con marcador + etiqueta (+ dato opcional a la derecha)
+   3) Proposito  : mostrar una coleccion simple de elementos, sin interaccion de filtrado
+   4) Estructura : ul.rk-list > li.rk-list__item(span.rk-list__marker + span.rk-list__label + span.rk-list__meta)
+   -- Lo AJUSTABLE entre hermanas --
+   - Proporciones: variables --rk-* definidas en la regla
+     raiz del componente (abajo). Cambialas para crear
+     una nueva variante sin tocar el resto del CSS.
+   - Contenido: todo lo marcado data-slot="..." es 100%
+     intercambiable siempre que respete el proposito.
+   ========================================================= */
+
+.rk-list{
+  list-style:none;margin:0;padding:0;width:min(360px,90vw);text-align:left;
+  border-top:1px solid var(--border);font-family:var(--rk-sans);
+}
+.rk-list__item{
+  display:flex;align-items:center;gap:var(--rk-space-3);
+  padding:var(--rk-space-3) 0;border-bottom:1px solid var(--border);
+}
+.rk-list__marker{flex:0 0 8px;width:8px;height:8px;border-radius:50%;background:var(--accent);}
+.rk-list__label{font-size:14px;color:var(--text-h);}
+.rk-list__meta{margin-left:auto;font-family:var(--rk-mono);font-size:12px;color:var(--text);}
+</style>
+</head>
+<body class="rk-preview">
+<span class="rk-preview__tag">Listas sin filtros &middot; hermana B</span>
+<!-- COMPONENT START -->
+<ul class="rk-list" data-slot="items" style="width:min(260px,90vw)">
+  <li class="rk-list__item"><span class="rk-list__marker"></span><span class="rk-list__label">Mesa directiva</span></li>
+  <li class="rk-list__item"><span class="rk-list__marker"></span><span class="rk-list__label">Representantes de partido</span></li>
+  <li class="rk-list__item"><span class="rk-list__marker"></span><span class="rk-list__label">Observadores electorales</span></li>
+</ul>
+<!-- COMPONENT END -->
+
+</body>
+</html>
